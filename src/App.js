@@ -1,5 +1,4 @@
 import "antd/dist/antd.css";
-import "./App.css";
 import { Button, Table, Modal, Input } from "antd";
 import { useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -9,50 +8,27 @@ function App() {
   const [editingStudent, setEditingStudent] = useState(null);
   const [dataSource, setDataSource] = useState([
     {
-      id: 1,
-      name: "John",
-      email: "john@gmail.com",
-      address: "John Address",
-    },
-    {
-      id: 2,
-      name: "David",
-      email: "david@gmail.com",
-      address: "David Address",
-    },
-    {
-      id: 3,
-      name: "James",
-      email: "james@gmail.com",
-      address: "James Address",
-    },
-    {
-      id: 4,
-      name: "Sam",
-      email: "sam@gmail.com",
-      address: "Sam Address",
-    },
+      id:1,
+      fixture: "UB",
+      rdno: "2",
+      date: "10/10/2021"
+    }
   ]);
   const columns = [
     {
       key: "1",
-      title: "ID",
-      dataIndex: "id",
+      title: "Fixture",
+      dataIndex: "fixture",
     },
     {
       key: "2",
-      title: "Name",
-      dataIndex: "name",
+      title: "Rd No.",
+      dataIndex: "rdno",
     },
     {
       key: "3",
-      title: "Email",
-      dataIndex: "email",
-    },
-    {
-      key: "4",
-      title: "Address",
-      dataIndex: "address",
+      title: "Date",
+      dataIndex: "date",
     },
     {
       key: "5",
@@ -78,12 +54,12 @@ function App() {
   ];
 
   const onAddStudent = () => {
-    const randomNumber = parseInt(Math.random() * 1000);
+    const randomNumber = parseInt(Math.random()*10)+1;
     const newStudent = {
-      id: randomNumber,
-      name: "Name " + randomNumber,
-      email: randomNumber + "@gmail.com",
-      address: "Address " + randomNumber,
+      id: parseInt(Math.random() * 10000),
+      fixture: "UB",
+      rdno: randomNumber,
+      date: randomNumber + "/" + (randomNumber+1) + "/2021",
     };
     setDataSource((pre) => {
       return [...pre, newStudent];
@@ -135,26 +111,18 @@ function App() {
           }}
         >
           <Input
-            value={editingStudent?.name}
+            value={editingStudent?.rdno}
             onChange={(e) => {
               setEditingStudent((pre) => {
-                return { ...pre, name: e.target.value };
+                return { ...pre, rdno: e.target.value };
               });
             }}
           />
           <Input
-            value={editingStudent?.email}
+            value={editingStudent?.date}
             onChange={(e) => {
               setEditingStudent((pre) => {
-                return { ...pre, email: e.target.value };
-              });
-            }}
-          />
-          <Input
-            value={editingStudent?.address}
-            onChange={(e) => {
-              setEditingStudent((pre) => {
-                return { ...pre, address: e.target.value };
+                return { ...pre, date: e.target.value };
               });
             }}
           />
